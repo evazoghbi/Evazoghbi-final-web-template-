@@ -18,6 +18,7 @@
   010.  SINGLE ITEM LAYOUT              (line 380)
   011.  CONTACT FORM                    (line 507)
   012.  WEBSITE FOOTER                  (line 648)
+  013.  ABOUT PAGE    
 
   (to jump to any section of the Contents, use the section number (e.g. 002) in 'Find', Cmd-F) */
 
@@ -28,25 +29,25 @@
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
 :root {
-    --dark-text: #13381f;
+    --dark-text: #BA2A53;
     --light-text: #fcfcfa;
     --cream-text: #f6ead0;
     --medium-dark-text: #055723;
-    --main-background: #F2C230;
-    --header-background: #F2E5A2;
-    --intro-background: #F29F05;
+    --main-background: #F39F99;
+    --header-background: #fEBE83;
+    --intro-background: #BA2A53;
     --dark-background: #002F15;
-    --portrait-background: #e06c10;
+    --portrait-background:#8B7A27;
     --landscape-background: #F23A29;
     --dark-border-colour: #08331c;
-    --button-colour: #402320;
+    --button-colour: #8B7A27;
     --dark-green: #13632e;
     --slide-out-menu-background: rgba(233, 240, 234, 0.93);
-    --footer-background: #73645C;
+    --footer-background: #BAD2E8;
     --off-white: #fcfcf5;
-    --description-text: #8c8e8d;
+    --description-text: ;
     --description-text-colour: #fcfcfa;
-    --light-silver: #fcfcfa;
+    --sky-blue: #BAD2E8;
 }
 
 /* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
@@ -56,14 +57,13 @@
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
 body {
-    font-family:  'Space Grotesk', sans-serif;
-    font-family: "Space Grotesk", sans-serif;
+    font-family:  'DM Sans', sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    color: #1d1d1b;
+    color: var(--dark-text);
     font-size: 1.2rem;
-    background-color: #97c8e3;
+    background-color: var(--main-background);
 }
 
 img {
@@ -109,18 +109,30 @@ main {
 
 header {
     position: relative; /* <-- needed so .icon anchors to the header, not the page */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:100%; 
     max-width: 1200px;
     margin: 0 auto;
     background-color: var(--header-background);
-    padding: 2rem 0 2rem 2rem;
+    padding: 2rem 2rem 2rem 2rem;
     min-height: 7rem;
 }
 
 header h1 {
     color: var(--dark-text);
-    font-weight: 600;
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 500;
+    font-size: 2rem;
+}
+h1, h2 {
+    font-family: 'Bodoni Moda', serif;
 }
 
+h3, h4 {
+    font-family: 'Crimson Pro', serif;
+}   
 /* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
   
     004.  NAVIGATION MENU
@@ -134,15 +146,19 @@ header {
 .topnav {
     display: flex;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: flex-end;
     gap: 0.5rem 2rem;
-    width: 100%;
+    width: auto;
+    padding-right: 2rem;
 }
 
 .topnav a {
-    color: #000;
+    color: var(--dark-text);
+    font-family: 'crimson Pro', serif;
+    font-weight: 600;
+    text-transform: uppercase;
     text-decoration: none;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
 }
 
 .topnav a:hover {
@@ -220,18 +236,24 @@ header {
 
 .introduction {
     background-color: var(--intro-background);
-    padding: 2rem;
+    width: 100%; 
+    padding: 1.1rem 1.5rem;
+    text-align: center;
+    margin: 0;
 }
 
 .introduction h2 {
-    color: var(--dark-text);
+    color: var(--sky-blue);
+    font-family:'crimson Pro', serif;
     font-weight: 400;
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+    font-size: clamp(1rem, 2.4vw, 1.35rem);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-bottom: 0;
 }
 
 .introduction p {
-    color: var(--dark-text);
+    color: var(--light-text);
     font-weight: 300;
     font-size: 1rem;
     margin-bottom: 1rem;
@@ -270,11 +292,11 @@ header {
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
 
 .carousel-section .caption {
-    background: #FAFAFA;
+    background: var(--portrait-background);
     margin: 0;
     padding: 10px;
     text-align: center;
-    color: #524d49;
+    color: var(--cream-text);
     font-size: .8rem;
     font-weight: 200;
     font-family: var(--typeface-open-sans);
@@ -283,6 +305,37 @@ header {
 
 .carousel-cell {
     width: 100%;
+}
+
+/* Row of five images on light blue */
+.places-preview {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
+    background-color: var(--sky-blue);
+}
+
+.places-preview a {
+    display: block;
+}
+
+.places-preview img {
+    display: block;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 900px) {
+    .places-preview {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .places-preview {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -665,6 +718,7 @@ header {
     padding: 7px 20px;
     text-align: center;
     text-decoration: none;
+
     display: inline-block;
     font-size: 1.2rem;
     cursor: pointer;
@@ -694,12 +748,28 @@ header {
 
 footer {
     background-color: var(--footer-background);
-    padding: 2rem;
+    padding: 0.4rem 1rem;
     color: var(--off-white);
+    text-align: center;
 }
 
 footer p {
-    font-size: .8rem;
+    font-size: 0.6rem;
+    margin: 0;
+}
+
+Footer p, 
+.footer__copyright-details p {
+    font-size: 0.6rem;
+   margin: 0;
+}
+
+.footer__copyright-details {
+  margin-top: 1.5rem;
+}
+
+.footer__copyright-details p + p {
+    margin-top: 0.8rem;
 }
 
 @supports (display: grid) {
@@ -779,7 +849,105 @@ ul.footer__menu__list li a:hover {
     }
 }
 
-/* = = =   E N D   O F   T H E   C S S  = = = */
+
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+    013.  ABOUT PAGE
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
+
+/* Colours for this page only */
+.about-page {
+    --dark-text: #A63B56;
+    --header-background: #DEAA7B;
+    --intro-background: #A63B56;
+    --sky-blue: #BAD2E8;
+    --about-box-background: #D8958F;
+    background-color: var(--sky-blue);
+}
+
+/* Pink text box and olive credit bar */
+.about-content {
+    width: 92%;
+    margin: 2.4rem auto 0;
+    padding-bottom: 3.5rem;
+}
+
+.about-text p {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    color: var(--dark-text);
+    margin-bottom: 1rem;
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+
+.about-credit {
+    background-color: var(--button-colour);
+    color: var(--off-white);
+    font-size: 0.7rem;
+    text-align: center;
+    padding: 0.2rem 1rem;
+    margin: 0.8rem 2rem 0;
+}
+
+/* = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+  
+    005.  DRAGGABLE AREA
+  
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = */
+
+.draggable-area {
+    /* height: 1000px; */
+    min-height: 70dvh;
+}
+
+.draggable {
+  position: absolute;
+  z-index: 999;
+  text-align: center;
+  cursor: move;
+  touch-action: none;
+  object-fit: contain;
+}
+
+.box {
+  border: 10px solid #edf0f5;
+  filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.box1 {
+  background-color: tomato;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.box2 {
+  background-color: blue;
+width: 200px;
+  height: 200px;
+}
+
+.cow { 
+  width: 250px;
+  filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.bear { 
+  width: 200px;
+  filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.draggable:hover, .draggable:active {
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2));
+    }
+
+
+    /* = = =   E N D   O F   T H E   C S S  = = = */
 
 /* *********************
     CSS BREAKPOINTS
